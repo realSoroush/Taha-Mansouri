@@ -1,0 +1,31 @@
+/* Hero controls and caption never overlap. The existing silhouette stays. */
+.hero-video-slot{position:absolute;inset:0 0 103px;background:#082632}
+.hero-video{display:block;width:100%;height:100%;object-fit:contain;background:#082632}
+.has-video .portrait-caption{height:103px;z-index:1}
+.has-video .visual-note{display:none}
+.video-unavailable{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:18px;padding:55px 24px 20px;text-align:center;color:var(--text-muted);font-size:14px}
+.video-unavailable svg{color:var(--orange)}
+.video-unavailable button{border:0;background:none;color:var(--orange);cursor:pointer;padding:8px}
+.lead-section{background:var(--navy-deep);border-top:1px solid var(--line)}
+.lead-layout{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:90px}
+.lead-layout .section-intro{margin-top:22px;max-width:420px}
+.lead-card{padding:34px;border:1px solid #39545f;border-radius:6px;background:#133542;min-width:0}
+.lead-field{margin-bottom:22px}
+.lead-field label{display:block;font-size:14px;margin-bottom:9px}
+.lead-field input{width:100%;min-height:54px;padding:12px 15px;font:inherit;font-size:16px;border:1px solid #53717c;border-radius:4px;background:#0d2b36;color:#fff;outline:none}
+.lead-field input::placeholder{color:#99b0ba;opacity:1}
+.lead-field input:focus-visible{border-color:var(--orange);outline:2px solid var(--orange);outline-offset:2px}
+.lead-field input[aria-invalid=true]{border-color:#ffb3a7}
+.lead-field input:disabled{opacity:.6}
+.lead-privacy{font-size:12px;color:var(--text-muted);line-height:2;margin-bottom:20px}
+.lead-card .button{width:100%;cursor:pointer;white-space:normal}
+.lead-card .button:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.field-error{font-size:13px;color:#ffb3a7;line-height:1.9;margin-top:8px}
+.lead-message{font-size:13px;line-height:1.9;margin-top:15px}
+.lead-trap{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0}
+.lead-success{min-height:290px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:18px}
+.lead-success svg{color:var(--orange)}
+.lead-success h3{font-size:23px;font-weight:550}
+.lead-success p{color:var(--text-muted);line-height:2;font-size:14px}
+@media(max-width:800px){.lead-layout{gap:32px}.lead-card{padding:25px}}
+@media(max-width:580px){.lead-layout{grid-template-columns:1fr;gap:28px}.lead-card{padding:24px 20px}.hero-video-slot{bottom:91px}.has-video .portrait-caption{height:91px}}
