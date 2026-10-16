@@ -1,0 +1,25 @@
+.course-highlight{padding:80px 0}
+.course-highlight .eyebrow{color:#9c4b24}
+.course-highlight .education-inner{display:block}
+.course-highlight h2{font-size:clamp(28px,3vw,38px)}
+.course-highlight p:not(.eyebrow){color:#526c76;max-width:660px;font-size:16px;margin-top:18px;line-height:2.1}
+.course-highlight .pill{color:#526c76;border-color:#b7c7ce}
+.education-actions{display:flex;align-items:center;gap:22px;margin-top:28px;flex-wrap:wrap}
+.course-highlight small{display:block;color:#526c76;font-size:12px;margin-top:18px;line-height:1.9}
+#services .services-grid{grid-template-columns:repeat(2,1fr)}
+.courses-intro{padding-top:46px}
+.breadcrumb{display:flex;gap:14px;color:var(--text-muted);font-size:13px;margin-bottom:60px}
+.breadcrumb a:hover{color:var(--orange)}
+.courses-intro h1{font-size:clamp(38px,4.4vw,62px);line-height:1.6;font-weight:600;letter-spacing:-1px}
+.courses-intro>.section-intro{max-width:640px;margin-top:20px}
+.courses-status{display:grid;grid-template-columns:140px 1fr;gap:36px;align-items:center;margin-top:58px;padding:48px;background:#133542;border:1px solid #39545f;border-radius:6px}
+.courses-status-symbol{height:140px;display:grid;place-items:center;border:1px solid #45616d;border-radius:50%;color:var(--orange)}
+.courses-status .pill{color:var(--orange);border-color:#866147}
+.courses-status h2{font-size:27px;margin-top:20px;line-height:1.8}
+.courses-status p{color:var(--text-muted);font-size:15px;line-height:2.1;margin-top:12px;max-width:650px}
+.courses-status .button{margin-top:28px;gap:13px;white-space:normal}
+.courses-help{display:flex;align-items:center;justify-content:space-between;gap:28px;margin-top:44px;padding-top:35px;border-top:1px solid var(--line)}
+.courses-help h2{font-size:19px;letter-spacing:0;margin-bottom:16px}
+.courses-help .text-link{color:var(--text-muted);white-space:normal;line-height:1.9}
+@media(max-width:800px){.courses-status{padding:32px;grid-template-columns:85px 1fr;gap:24px}.courses-status-symbol{height:85px}.courses-status h2{font-size:23px}.courses-status .button{font-size:14px}.hero .eyebrow{line-height:1.9}}
+@media(max-width:580px){#services .services-grid{grid-template-columns:1fr}.course-highlight{padding:57px 0}.courses-status{grid-template-columns:1fr;padding:26px;margin-top:36px;gap:24px}.courses-status-symbol{width:76px;height:76px}.courses-status-symbol svg{width:36px;height:36px}.courses-status h2{font-size:23px}.courses-help{flex-direction:column;align-items:start}.breadcrumb{margin-bottom:36px}.courses-intro{padding-top:30px}.courses-status .button{font-size:13px;padding:14px 15px;gap:10px}.education-actions{gap:17px}.hero h1{font-size:clamp(31px,8.8vw,43px)}.hero-actions{flex-wrap:wrap;gap:18px}.hero-note{line-height:1.9}}
