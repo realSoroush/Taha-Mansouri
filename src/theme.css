@@ -96,7 +96,11 @@
 }
 
 /* Native media controls remain intact; quality is an explicit, opt-in MP4 switch. */
-.video-quality { min-height: 44px; min-width: 0; max-width: 132px; padding: 8px; border: 1px solid #5c7192; border-radius: 5px; background: var(--navy-light); color: var(--action-bg); font: inherit; font-size: 16px; cursor: pointer; }
+.video-quality { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; padding: 10px; border: 0; border-radius: 5px; background: transparent; color: var(--text-muted); cursor: pointer; }
+.video-quality span { border: 1px solid currentColor; border-radius: 3px; padding: 2px 4px; font: 700 12px/1 Arial, sans-serif; }
+.video-quality[aria-pressed="true"] { color: var(--action-bg); }
+.video-quality[aria-pressed="true"] span { background: var(--action-bg); border-color: var(--action-bg); color: var(--navy); }
+.video-quality:not(:disabled):hover { background: var(--navy-light); }
 .video-quality:focus-visible { outline: 2px solid var(--action-bg); outline-offset: 2px; }
 .video-quality:disabled { opacity: .55; cursor: wait; }
 .video-quality-status { flex: 0 0 auto; padding: 4px 12px 8px; font-size: 12px; line-height: 1.8; text-align: center; color: var(--text-muted); }

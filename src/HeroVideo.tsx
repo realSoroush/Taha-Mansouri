@@ -117,11 +117,12 @@ export function HeroVideo() {
         {c.hero.videoUnsupported}
       </video>
       <div className="video-toolbar" aria-busy={switching}>
-        <select className="video-quality" aria-label={c.hero.qualityLabel} value={quality}
-          disabled={!ready || switching} onChange={event => changeQuality(event.target.value as Quality)}>
-          <option value="standard">{c.hero.qualityStandard}</option>
-          <option value="hd">HD · 720p</option>
-        </select>
+        <button className="video-quality" type="button" aria-pressed={quality === 'hd'}
+          aria-label={quality === 'hd' ? 'تغییر کیفیت به عادی' : 'فعال‌کردن کیفیت HD · 720p'}
+          title={quality === 'hd' ? 'HD · 720p — برای کیفیت عادی کلیک کنید' : 'فعال‌کردن HD · 720p'}
+          disabled={!ready || switching} onClick={() => changeQuality(quality === 'hd' ? 'standard' : 'hd')}>
+          <span lang="en" dir="ltr">HD</span>
+        </button>
         <button className="video-fullscreen" type="button" aria-label={c.hero.fullscreen} title={c.hero.fullscreen} onClick={openFullscreen} disabled={!ready || switching}>
           <Maximize size={18} aria-hidden="true"/><span>{c.hero.fullscreen}</span>
         </button>
