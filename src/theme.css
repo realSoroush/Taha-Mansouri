@@ -73,7 +73,7 @@
 .messengers > a:hover { background: #e3edfb; }
 .hero-video-slot { display: flex; flex-direction: column; background: var(--navy-deep); }
 .hero-video { flex: 1 1 0; min-height: 0; height: 0; background: var(--navy-deep); }
-.video-toolbar { flex: 0 0 auto; display: flex; justify-content: center; padding: 2px 12px; background: var(--navy-deep); border-top: 1px solid var(--line); }
+.video-toolbar { flex: 0 0 auto; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 2px 8px; background: var(--navy-deep); border-top: 1px solid var(--line); }
 .video-fullscreen { display: inline-flex; gap: 9px; align-items: center; justify-content: center; min-height: 44px; padding: 8px 14px; border: 0; border-radius: 5px; background: transparent; color: var(--action-bg); font-size: 14px; cursor: pointer; }
 .video-fullscreen:disabled { opacity: .55; cursor: wait; }
 .video-fullscreen-error { flex: 0 0 auto; font-size: 12px; line-height: 1.8; color: #ffb3a7; text-align: center; padding: 4px 12px 8px; }
@@ -93,4 +93,15 @@
   .lead-layout .section-intro, .lead-success p { font-size: 16px; }
   .hero-video-slot { bottom: 91px; }
   .process .pill { white-space: normal; text-align: center; line-height: 1.9; }
+}
+
+/* Native media controls remain intact; quality is an explicit, opt-in MP4 switch. */
+.video-quality { min-height: 44px; min-width: 0; max-width: 132px; padding: 8px; border: 1px solid #5c7192; border-radius: 5px; background: var(--navy-light); color: var(--action-bg); font: inherit; font-size: 16px; cursor: pointer; }
+.video-quality:focus-visible { outline: 2px solid var(--action-bg); outline-offset: 2px; }
+.video-quality:disabled { opacity: .55; cursor: wait; }
+.video-quality-status { flex: 0 0 auto; padding: 4px 12px 8px; font-size: 12px; line-height: 1.8; text-align: center; color: var(--text-muted); }
+@media(max-width: 800px) {
+  .video-toolbar { justify-content: space-between; }
+  .video-fullscreen { min-width: 44px; padding-inline: 10px; flex-shrink: 0; }
+  .video-fullscreen span { display: none; }
 }
