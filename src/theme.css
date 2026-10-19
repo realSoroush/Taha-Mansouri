@@ -1,0 +1,96 @@
+/* One palette, two section surfaces. Actions stay sky blue on both surfaces. */
+:root {
+  --navy: #101f3c;
+  --navy-deep: #0c1830;
+  --navy-light: #1b2e4c;
+  --paper: #f5f7fa;
+  --action-bg: #c9dfff;
+  --accent: #c9dfff;
+  --text-muted: #c0ccde;
+  --line: #344666;
+  --panel: #1b2e4c;
+  --ink: #f5f7fa;
+  color: var(--ink);
+  background: var(--navy);
+}
+.surface-navy {
+  --accent: #c9dfff;
+  --text-muted: #c0ccde;
+  --line: #344666;
+  --panel: #1b2e4c;
+  --ink: #f5f7fa;
+  background: var(--navy);
+  color: var(--ink);
+}
+.surface-light {
+  --accent: #244d7c;
+  --text-muted: #536177;
+  --line: #d5deea;
+  --panel: #ffffff;
+  --ink: #101f3c;
+  background: var(--paper);
+  color: var(--ink);
+}
+/* Hero + its summary form a single dark opening, then alternate full sections. */
+.about, .course-highlight, .audience, #services, .process, .lead-section, .contact {
+  border: 0;
+}
+.button { background: var(--action-bg); color: var(--navy); border-radius: 8px; }
+.button:hover { background: #dceaff; }
+.eyebrow, .accent, .surface-light .eyebrow, .course-highlight .eyebrow { color: var(--accent); }
+.brand { min-width: 0; }
+.brand-logo { width: 64px; height: 64px; flex: 0 0 64px; object-fit: contain; border-radius: 10px; background: white; }
+.signature-logo { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; }
+.about-statement, .service-card, .service-invite, .lead-card, .courses-status {
+  background: var(--panel);
+  color: var(--ink);
+  border: 1px solid var(--line);
+}
+.about-statement { border-radius: 8px; }
+.about-copy > p:not(.eyebrow), .statement-signature, .course-highlight p:not(.eyebrow),
+.course-highlight small, .service-card p, .service-top, .service-top span,
+.surface-light .section-intro, .muted-title, .process-description, .process-grid p {
+  color: var(--text-muted);
+}
+.service-card:hover { background: #243b5c; border-color: #7896bc; }
+.service-invite .text-link, .invite-symbol { color: var(--accent); }
+.service-invite p { max-width: 100%; }
+.industry-list svg { color: var(--text-muted); }
+.pill, .course-highlight .pill, .process .pill, .courses-status .pill {
+  color: var(--accent); border-color: var(--line); background: transparent;
+}
+.process-grid article { border-color: var(--line); }
+.step-number { background: var(--paper); border-color: var(--line); color: var(--accent); }
+.process-grid article:not(:last-child)::after { background: var(--line); }
+.lead-field input { border-color: #5c7192; background: var(--navy); }
+.lead-card { border-radius: 12px; }
+.lead-field input:focus-visible { outline-color: var(--action-bg); border-color: var(--action-bg); }
+.lead-card .button { min-height: 52px; }
+.contact .eyebrow, .contact small { color: var(--text-muted); }
+.call-link { border-radius: 8px; }
+.call-link > svg { color: var(--action-bg); }
+.messengers > a { border-color: var(--line); background: var(--panel); }
+.messengers > a:hover { background: #e3edfb; }
+.hero-video-slot { display: flex; flex-direction: column; background: var(--navy-deep); }
+.hero-video { flex: 1 1 0; min-height: 0; height: 0; background: var(--navy-deep); }
+.video-toolbar { flex: 0 0 auto; display: flex; justify-content: center; padding: 2px 12px; background: var(--navy-deep); border-top: 1px solid var(--line); }
+.video-fullscreen { display: inline-flex; gap: 9px; align-items: center; justify-content: center; min-height: 44px; padding: 8px 14px; border: 0; border-radius: 5px; background: transparent; color: var(--action-bg); font-size: 14px; cursor: pointer; }
+.video-fullscreen:disabled { opacity: .55; cursor: wait; }
+.video-fullscreen-error { flex: 0 0 auto; font-size: 12px; line-height: 1.8; color: #ffb3a7; text-align: center; padding: 4px 12px 8px; }
+.hero-video:fullscreen { width: 100vw; height: 100vh; object-fit: contain; background: black; }
+.hero-video:-webkit-full-screen { width: 100%; height: 100%; object-fit: contain; background: black; }
+@media (max-width: 1100px) and (min-width: 801px) {
+  .header-inner { gap: 18px; }
+  .brand { gap: 10px; }
+  .brand strong { font-size: 18px; }
+  .brand-logo { width: 56px; height: 56px; flex-basis: 56px; }
+  .header-cta { gap: 10px; padding: 11px 14px; }
+}
+@media (max-width: 580px) {
+  .brand-logo { width: 52px; height: 52px; flex-basis: 52px; }
+  .header-cta { display: none; }
+  .menu-toggle { margin-right: auto; min-width: 44px; min-height: 44px; padding: 10px; }
+  .lead-layout .section-intro, .lead-success p { font-size: 16px; }
+  .hero-video-slot { bottom: 91px; }
+  .process .pill { white-space: normal; text-align: center; line-height: 1.9; }
+}

@@ -2,7 +2,7 @@ import { useRef, useState, type FormEvent } from 'react';
 import { ArrowUpLeft, CheckCircle2 } from 'lucide-react';
 import { content as c } from './content';
 import { formConfigured } from './config';
-import { normalizeName, normalizePhone, submitLead } from './leads';
+import { normalizeName, normalizePhone, submitCourseWaitlist } from './leads';
 
 export function LeadForm() {
   const [fullName, setFullName] = useState('');
@@ -29,7 +29,7 @@ export function LeadForm() {
     try {
       const payload = JSON.stringify([name, normalizedPhone]);
       if (attempt.current?.payload !== payload) attempt.current = { payload, id: crypto.randomUUID() };
-      await submitLead(name, normalizedPhone, attempt.current.id, website);
+      await submitCourseWaitlist(name, normalizedPhone, attempt.current.id, website);
       setState('success');
       setFullName(''); setPhone('');
     } catch {
@@ -38,7 +38,7 @@ export function LeadForm() {
     } finally { pending.current = false; }
   }
 
-  return <section id="consultation" className="lead-section section" aria-labelledby="lead-title">
+  return <section id="course-waitlist" className="lead-section section surface-navy" aria-labelledby="lead-title">
     <div className="container lead-layout">
       <div><p className="eyebrow">{c.leadForm.eyebrow}</p><h2 id="lead-title">{c.leadForm.title}<br/><span className="accent">{c.leadForm.accent}</span></h2><p className="section-intro">{c.leadForm.description}</p></div>
       <div className="lead-card">

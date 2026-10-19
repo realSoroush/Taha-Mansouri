@@ -14,7 +14,7 @@ export function normalizeName(value: string) {
   return value.replace(/\s+/g, ' ').trim();
 }
 
-export async function submitLead(fullName: string, phone: string, requestId: string, website: string) {
+export async function submitCourseWaitlist(fullName: string, phone: string, requestId: string, website: string) {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(), 15000);
   try {
@@ -23,7 +23,7 @@ export async function submitLead(fullName: string, phone: string, requestId: str
     };
     // Legacy anon JWTs use Bearer; new publishable keys belong in apikey only.
     if (supabaseConfig.key.startsWith('eyJ')) headers.Authorization = `Bearer ${supabaseConfig.key}`;
-    const response = await fetch(`${supabaseConfig.url}/rest/v1/rpc/submit_consultation_request`, {
+    const response = await fetch(`${supabaseConfig.url}/rest/v1/rpc/submit_course_waitlist`, {
       method: 'POST', headers, signal: controller.signal,
       body: JSON.stringify({ p_full_name: fullName, p_phone: phone, p_request_id: requestId, p_website: website }),
     });
