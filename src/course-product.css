@@ -1,0 +1,13 @@
+.course-product { display: grid; gap: 28px; }
+.product-hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: start; }
+.product-hero h1 { font-size: clamp(30px, 5vw, 60px); line-height: 1.55; }
+.course-product p { line-height: 1.9; margin: .8rem 0; }
+.product-panel { border: 1px solid var(--line); background: var(--navy-light); border-radius: 14px; padding: clamp(18px, 4vw, 32px); min-width: 0; }
+.product-panel .button { margin-block: 12px; display: flex; width: fit-content; cursor: pointer; }
+.product-panel button:disabled { opacity: .6; cursor: wait; }
+.product-panel blockquote { margin: 16px 0; padding: 12px 16px; border-inline-start: 3px solid var(--action-bg); line-height: 2; }
+.product-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px 24px; padding-inline-start: 20px; }
+.product-panel details { padding-block: 12px; border-bottom: 1px solid var(--line); }
+.product-panel summary { cursor: pointer; }
+.order-number { overflow-wrap: anywhere; }
+@media (max-width: 760px) { .product-hero { grid-template-columns: minmax(0, 1fr); } }

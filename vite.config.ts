@@ -17,5 +17,5 @@ function courseRedirect(server: ViteDevServer | PreviewServer) {
 export default defineConfig({
   plugins: [react(), { name: 'course-directory-url', configureServer: courseRedirect, configurePreviewServer: courseRedirect }],
   server: { host: '0.0.0.0', port: 4173, allowedHosts: ['terminal.local'] },
-  build: { rollupOptions: { input: { home: 'index.html', courses: 'courses/index.html' } } },
+  build: { rollupOptions: { input: { home: 'index.html', courses: 'courses/index.html', customerObjections: 'courses/customer-objections/index.html' } } },
 });
