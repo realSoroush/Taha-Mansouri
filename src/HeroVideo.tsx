@@ -74,6 +74,12 @@ export function HeroVideo() {
       element.currentTime = Math.min(saved.time, end);
     }
     setReady(true);
+    // Paused playback only needs metadata and a seek. With preload="metadata",
+    // browsers can defer canplay until the user actually starts playback.
+    if (saved && !saved.playing) {
+      resume.current = null;
+      setSwitching(false);
+    }
   }
 
   function canPlay() {
@@ -111,14 +117,14 @@ export function HeroVideo() {
 
   return <div className="hero-video-slot">
     {url && !failed ? <>
-      <video ref={video} className="hero-video" controls playsInline preload="metadata"
+      <video ref={video} className="hero-video" controls playsInline preload={switching && resume.current?.playing ? 'auto' : 'metadata'}
         poster={c.hero.photo || undefined} aria-label={c.hero.videoLabel}
         onLoadedMetadata={metadataLoaded} onCanPlay={canPlay} onError={loadFailed} src={url}>
         {c.hero.videoUnsupported}
       </video>
       <div className="video-toolbar" aria-busy={switching}>
         <button className="video-quality" type="button" aria-pressed={quality === 'hd'}
-          aria-label={quality === 'hd' ? 'تغییر کیفیت به عادی' : 'فعال‌کردن کیفیت HD · 720p'}
+          aria-label="کیفیت HD · 720p"
           title={quality === 'hd' ? 'HD · 720p — برای کیفیت عادی کلیک کنید' : 'فعال‌کردن HD · 720p'}
           disabled={!ready || switching} onClick={() => changeQuality(quality === 'hd' ? 'standard' : 'hd')}>
           <span lang="en" dir="ltr">HD</span>
