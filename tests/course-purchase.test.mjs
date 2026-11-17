@@ -70,3 +70,34 @@ test('checkout binds payment and download to the stored order and buyer', async 
   assert.equal(file.code, 303);
   assert.match(file.headers.Location, /download=customer-objections.pdf$/);
 });
+
+test('temporary download is opt-in, GET-only, and signs only the course PDF without a merchant', async t => {
+  const env = { VITE_SUPABASE_URL: 'https://storage.example', SUPABASE_SERVICE_ROLE_KEY: 'test',
+    ZARINPAL_MERCHANT_ID: undefined, COURSE_EXTERNAL_DOWNLOAD_ENABLED: undefined };
+  for (const [key, value] of Object.entries(env)) {
+    const previous = process.env[key];
+    if (value === undefined) delete process.env[key]; else process.env[key] = value;
+    t.after(() => { if (previous === undefined) delete process.env[key]; else process.env[key] = previous; });
+  }
+  const path = '/object/sign/course-downloads/customer-objections/guide-v5.pdf';
+  const mock = t.mock.method(globalThis, 'fetch', async (url, init) => {
+    assert.equal(url, 'https://storage.example/storage/v1' + path);
+    assert.equal(JSON.parse(init.body).expiresIn, 120);
+    return Response.json({ signedURL: path + '?token=test' });
+  });
+  async function download(method) {
+    const out = { headers: {} };
+    const res = { setHeader(k, v) { out.headers[k] = v; }, status(v) { out.code = v; return this; }, json() {}, end() {} };
+    await handler({ url: '/api/course-purchase?action=external-download&path=ignored', method, headers: {} }, res);
+    return out;
+  }
+  assert.equal((await download('GET')).code, 404);
+  process.env.COURSE_EXTERNAL_DOWNLOAD_ENABLED = 'true';
+  assert.equal((await download('POST')).code, 404);
+  assert.equal(mock.mock.callCount(), 0);
+  const response = await download('GET');
+  assert.equal(response.code, 303);
+  assert.equal(response.headers.Location, 'https://storage.example/storage/v1' + path + '?token=test&download=customer-objections.pdf');
+  assert.equal(response.headers['Cache-Control'], 'private, no-store');
+  assert.equal(mock.mock.callCount(), 1);
+});
