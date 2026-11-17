@@ -1,38 +1,11 @@
-.course-product { display: grid; gap: 28px; }
-.product-hero { display: grid; grid-template-columns: 1.35fr 1fr; gap: 32px; align-items: start; }
-.product-hero h1 { font-size: clamp(30px, 5vw, 60px); line-height: 1.55; }
-.course-product p { line-height: 1.9; margin: .8rem 0; }
 .product-panel { border: 1px solid var(--line); background: var(--navy-light); border-radius: 14px; padding: clamp(18px, 4vw, 32px); min-width: 0; }
 .product-panel .button { margin-block: 12px; display: flex; width: fit-content; cursor: pointer; }
-.product-panel button:disabled { opacity: .6; cursor: wait; }
-.product-panel blockquote { margin: 16px 0; padding: 12px 16px; border-inline-start: 3px solid var(--action-bg); line-height: 2; }
-.product-topics { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px 24px; padding-inline-start: 20px; }
-.product-panel details { padding-block: 12px; border-bottom: 1px solid var(--line); }
-.product-panel summary { cursor: pointer; }
-.order-number { overflow-wrap: anywhere; }
-@media (max-width: 760px) { .product-hero { grid-template-columns: minmax(0, 1fr); } }
-
 .course-return { max-width: 760px; margin-inline: auto; }
 .course-return-card { padding: clamp(22px, 6vw, 56px); }
 .course-return-card h1 { font-size: clamp(24px, 5vw, 42px); line-height: 1.55; margin: 0; }
 .course-return-icon { display: grid; place-items: center; width: 58px; height: 58px; background: var(--action-bg); color: var(--navy); border-radius: 14px; margin-bottom: 24px; }
 .course-return-meta { opacity: .8; margin: 12px 0 24px; }
-.course-return-notice { border-top: 1px solid var(--line); padding-top: 20px; }
-.course-return-notice h2 { font-size: 20px; margin: 0 0 8px; }
-.course-return-notice p { line-height: 1.9; }
 .course-return-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 16px; }
-
-.product-hero { align-items: stretch; }
-.product-intro { padding-block: clamp(8px, 3vw, 32px); }
-.product-intro > p:not(.eyebrow) { max-width: 49ch; font-size: clamp(16px, 2vw, 20px); }
-.product-badges { display: flex; flex-wrap: wrap; gap: 8px; padding: 0; list-style: none; }
-.product-badges li { padding: 6px 12px; border: 1px solid var(--line); border-radius: 999px; }
-.product-author { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
-.product-author-mark { display: grid; place-items: center; width: 48px; height: 48px; flex: none; border-radius: 12px; background: var(--action-bg); color: var(--navy); }
-.product-author p { margin: 0; font-size: 13px; opacity: .8; }
-.product-use ul { padding: 0; display: grid; gap: 12px; list-style: none; }
-.product-use li { display: flex; align-items: baseline; gap: 10px; line-height: 1.8; }
-.product-use svg { flex: none; color: var(--action-bg); align-self: center; }
 .course-return-card { background: linear-gradient(150deg, #213858, var(--navy-light) 60%); }
 .course-return-lead { font-size: 17px; line-height: 1.9; max-width: 48ch; }
 .course-return-tip { display: flex; align-items: center; gap: 12px; border-top: 1px solid var(--line); margin-top: 22px; padding-top: 14px; }
@@ -43,4 +16,137 @@
   .course-return-actions .button { width: 100%; justify-content: center; }
 }
 
-img.product-author-mark { width: 64px; height: 64px; object-fit: cover; }
+.course-product {
+  --product-ink: #142540;
+  --product-muted: #526178;
+  --product-line: #dce4ef;
+  --product-surface: #f5f8fc;
+  --product-accent: #285587;
+  color: var(--product-ink);
+  background: radial-gradient(ellipse at top right, #e7eef8, transparent 72%), #f1f4f8;
+  padding: clamp(20px, 4vw, 54px) 0 clamp(32px, 6vw, 74px);
+  line-height: 1.8;
+}
+.product-shell {
+  width: min(1280px, calc(100% - 64px));
+  margin-inline: auto;
+  padding: clamp(16px, 2.5vw, 30px);
+  background: #fff;
+  border: 1px solid var(--product-line);
+  border-radius: 24px;
+  box-shadow: 0 14px 42px #162a4610;
+}
+.product-masthead {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 6px 16px;
+  border-bottom: 1px solid var(--product-line);
+  margin-bottom: clamp(16px, 2.2vw, 25px);
+  padding-bottom: 12px;
+  font-size: 13px;
+}
+.product-masthead > * { display: inline-flex; align-items: center; gap: 8px; }
+.product-masthead span { font-weight: 750; }
+.product-masthead a { color: var(--product-accent); min-height: 44px; }
+.product-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(290px, 31%);
+  grid-template-areas: "intro sidebar" "details sidebar";
+  align-items: start;
+  gap: 22px;
+}
+.product-intro, .product-section, .product-author-card, .product-facts, .product-buy {
+  border: 1px solid var(--product-line);
+  border-radius: 16px;
+  min-width: 0;
+}
+.product-intro { grid-area: intro; background: linear-gradient(145deg, #f7faff, #fff 70%); padding: clamp(18px, 3vw, 34px); }
+.product-kicker { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; color: var(--product-accent); font-weight: 700; font-size: 13px; }
+.product-kicker span { width: 4px; height: 4px; background: currentColor; border-radius: 50%; }
+.product-intro h1 { font-size: clamp(28px, 3.2vw, 44px); font-weight: 850; line-height: 1.45; margin-block: 10px; }
+.product-hook { font-size: clamp(16px, 1.85vw, 22px); font-weight: 750; line-height: 1.6; }
+.product-summary { max-width: 65ch; color: var(--product-muted); margin-block-start: 8px; line-height: 1.9; }
+.product-badges { display: flex; flex-wrap: wrap; gap: 7px; list-style: none; padding: 0; margin: 16px 0 0; }
+.product-badges li { display: inline-flex; align-items: center; gap: 5px; padding: 3px 9px; background: #eaf2fe; color: #254970; border-radius: 7px; font-size: 12px; font-weight: 650; }
+.product-sidebar { grid-area: sidebar; display: grid; gap: 12px; }
+.product-buy { background: var(--product-surface); padding: 12px; }
+.product-cover { position: relative; isolation: isolate; overflow: hidden; background: #122442; color: white; width: 100%; min-height: 146px; aspect-ratio: 1.9; border-radius: 11px; }
+.product-cover::after { content: ""; position: absolute; z-index: -1; inset: 0; background: linear-gradient(270deg, #122442 28%, #12244215 74%), linear-gradient(0deg, #101f3c66, transparent 55%); }
+.product-cover img { position: absolute; z-index: -2; width: 65%; height: 100%; inset-inline-end: 0; object-fit: cover; object-position: center 28%; }
+.product-cover-copy { display: grid; align-content: center; justify-items: start; height: 100%; padding: 12px clamp(14px, 2.4vw, 24px); }
+.product-cover-format { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #dbeaff; }
+.product-cover-number { font-size: clamp(44px, 5vw, 66px); line-height: 1; font-weight: 850; color: #d7e7ff; }
+.product-cover-caption { font-size: 14px; font-weight: 750; }
+.product-price { display: flex; align-items: baseline; justify-content: space-between; gap: 6px 12px; flex-wrap: wrap; margin-block: 14px 8px; }
+.product-price h2 { font-size: 13px; font-weight: 650; color: var(--product-muted); }
+.product-price strong { font-size: clamp(18px, 2.1vw, 24px); line-height: 1.45; font-weight: 850; }
+.course-product .button { gap: 10px; min-height: 50px; padding: 10px 15px; background: #c9dfff; color: #142540; border-color: #a9c8f5; }
+.course-product .button:hover { background: #b9d5ff; transform: none; }
+.course-product :is(a, button, summary):focus-visible { outline: 3px solid #2761a3; outline-offset: 3px; }
+.course-product :is(h2, h3) { letter-spacing: normal; }
+.product-buy .button { display: flex; width: 100%; margin-block: 8px; cursor: pointer; }
+.product-buy button:disabled { opacity: .65; cursor: wait; }
+.product-buy > p, .product-buy .text-link { color: var(--product-muted); font-size: 13px; }
+.product-payment-note { text-align: center; }
+.product-buy [role="alert"] { color: #983438; }
+.order-number { overflow-wrap: anywhere; }
+.product-author-card, .product-facts { background: #fff; padding: 15px; }
+.product-author-card { display: flex; align-items: center; gap: 10px; }
+.product-author-card img { border-radius: 50%; object-fit: cover; flex: none; }
+.product-author-card h2, .product-facts h2 { font-size: 16px; font-weight: 750; }
+.product-author-card p { color: var(--product-muted); font-size: 13px; }
+.product-facts ul { display: grid; gap: 9px; list-style: none; margin: 8px 0 0; padding: 0; }
+.product-facts li { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; color: var(--product-muted); }
+.product-facts svg { color: var(--product-accent); margin-block-start: 2px; }
+.product-content { grid-area: details; min-width: 0; display: grid; gap: 15px; }
+.product-jumps { display: flex; flex-wrap: wrap; gap: 7px; }
+.product-jumps a { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 6px 12px; background: #edf2f8; border-radius: 8px; color: #2d496d; font-size: 13px; font-weight: 650; }
+.product-jumps a:hover { background: #d9e7fa; }
+.course-product:not(:has(.product-section:target)) .product-jumps a:first-child,
+.course-product:has(#overview:target) .product-jumps a[href="#overview"],
+.course-product:has(#topics:target) .product-jumps a[href="#topics"],
+.course-product:has(#sample:target) .product-jumps a[href="#sample"],
+.course-product:has(#faq:target) .product-jumps a[href="#faq"] { background: #172a46; color: #fff; }
+.product-section { padding: clamp(15px, 2.8vw, 27px); }
+.product-section h2 { font-size: clamp(19px, 2.1vw, 25px); font-weight: 780; margin-block-end: 8px; }
+.product-section > p:not(.product-kicker) { color: var(--product-muted); }
+.product-takeaways, .product-topics { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; list-style: none; padding: 0; margin: 13px 0 0; }
+.product-takeaways li, .product-topics li { display: flex; align-items: flex-start; gap: 8px; font-size: 14px; }
+.product-takeaways svg { box-sizing: content-box; padding: 2px; margin-block-start: 3px; border-radius: 50%; color: #225182; background: #e1edfc; }
+.product-topics li { align-items: center; background: var(--product-surface); border-radius: 8px; padding: 7px 9px; }
+.product-topics span { color: var(--product-accent); font-weight: 780; font-size: 13px; }
+.product-sample { background: #edf4fe; }
+.product-sample .product-kicker { margin-block-end: 8px; }
+.product-sample blockquote { margin: 10px 0; border-inline-start: 3px solid #5d8ec7; border-radius: 7px; background: #fff; padding: 12px 14px; }
+.product-faq details + details { border-top: 1px solid var(--product-line); }
+.product-faq summary { display: flex; justify-content: space-between; align-items: center; list-style: none; gap: 12px; min-height: 44px; padding: 9px 0; cursor: pointer; font-weight: 650; }
+.product-faq summary::-webkit-details-marker { display: none; }
+.product-faq details[open] summary svg { transform: rotate(180deg); }
+.product-faq details p { padding-block: 0 12px; color: var(--product-muted); font-size: 14px; }
+.product-next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; border-radius: 13px; padding: 13px 17px; background: #172a46; color: #fff; }
+.product-next p { font-size: 15px; font-weight: 680; }
+@media (max-width: 790px) {
+  .product-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "intro" "purchase" "details" "author" "facts"; gap: 13px; }
+  .product-sidebar { display: contents; }
+  .product-buy { grid-area: purchase; }
+  .product-author-card { grid-area: author; }
+  .product-facts { grid-area: facts; }
+  .product-shell { width: calc(100% - 28px); border-radius: 18px; }
+  .product-cover { aspect-ratio: auto; min-height: 0; height: clamp(124px, 34vw, 215px); }
+  .product-cover img { object-position: center 24%; }
+}
+@media (max-width: 480px) {
+  .course-product { padding-block-start: 12px; }
+  .product-shell { width: calc(100% - 20px); padding: 12px; }
+  .product-masthead { margin-bottom: 12px; padding-bottom: 4px; }
+  .product-intro { padding: 14px; }
+  .product-intro h1 { font-size: 25px; }
+  .product-summary { font-size: 14px; }
+  .product-takeaways { grid-template-columns: minmax(0, 1fr); }
+  .product-jumps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product-jumps a { padding-inline: 6px; }
+  .product-next .button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { html:has(.course-product) { scroll-behavior: auto; } }

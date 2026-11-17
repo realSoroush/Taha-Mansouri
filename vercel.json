@@ -2,16 +2,24 @@
   "trailingSlash": true,
   "rewrites": [
     {
-      "source": "/courses/",
-      "destination": "/courses/index.html"
-    },
-    {
       "source": "/courses/customer-objections/",
       "destination": "/courses/customer-objections/index.html"
     },
     {
       "source": "/courses/customer-objections/return/",
       "destination": "/courses/customer-objections/return/index.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/courses/",
+      "destination": "/courses/customer-objections/",
+      "permanent": false
+    },
+    {
+      "source": "/courses/index.html",
+      "destination": "/courses/customer-objections/",
+      "permanent": false
     }
   ]
 }

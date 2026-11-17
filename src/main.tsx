@@ -7,8 +7,8 @@ import './styles.css';
 import './additions.css';
 import { HeroVideo } from './HeroVideo';
 import { LeadForm } from './LeadForm';
-import { CoursesPage } from './CoursesPage';
-import { CourseProduct, CourseReturn, coursePath, courseReturnPath } from './CourseProduct';
+import { CourseProduct, CourseReturn, courseReturnPath } from './CourseProduct';
+import { coursePath } from './course-paths';
 import './course-product.css';
 import './course-pages.css';
 import './theme.css';
@@ -18,7 +18,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const isProduct = [coursePath, coursePath.slice(0, -1), coursePath + 'index.html'].includes(location.pathname);
   const isCourseReturn = [courseReturnPath, courseReturnPath.slice(0, -1), courseReturnPath + 'index.html'].includes(location.pathname);
-  const isCourses = isCourseReturn || isProduct || /^\/courses(?:\/|\/index\.html)?$/.test(window.location.pathname);
+  const isCourses = isCourseReturn || isProduct;
   const navHref = (href: string) => isCourses && href.startsWith('#') ? '/' + href : href;
   const phoneLink = `tel:${c.contact.phone}`;
   return <>
@@ -29,7 +29,7 @@ function App() {
       <a className="button button-small header-cta" href={c.headerCta.href}>{c.headerCta.label}<ArrowUpLeft size={18}/></a>
       <button className="menu-toggle" aria-label={menuOpen ? 'بستن منو' : 'بازکردن منو'} aria-expanded={menuOpen} aria-controls="mobile-menu" onClick={() => setMenuOpen(!menuOpen)}>{menuOpen ? <X/> : <Menu/>}</button>
     </div>{menuOpen && <nav id="mobile-menu" className="mobile-nav" aria-label="منوی موبایل" onKeyDown={e => { if (e.key === 'Escape') setMenuOpen(false); }}>{c.navigation.map(n => <a key={n.href} href={navHref(n.href)} onClick={() => setMenuOpen(false)}>{n.label}</a>)}<a href={navHref("#course-waitlist")} onClick={() => setMenuOpen(false)}>{c.leadForm.navLabel}</a></nav>}</header>
-    {isCourseReturn ? <CourseReturn/> : isProduct ? <CourseProduct/> : isCourses ? <CoursesPage/> : <main id="main">
+    {isCourseReturn ? <CourseReturn/> : isProduct ? <CourseProduct/> : <main id="main">
       <section className="hero container" aria-labelledby="hero-title">
         <div className="hero-copy"><p className="eyebrow"><span/>{c.hero.eyebrow}</p><h1 id="hero-title">{c.hero.lines.map((line, i) => <span key={i} className={i === 1 ? 'accent' : ''}>{line}</span>)}</h1><p className="hero-description">{c.hero.description}</p><div className="hero-actions"><a href={c.hero.primaryHref} className="button">{c.hero.primaryCta}<ArrowUpLeft size={20}/></a><a href={c.hero.secondaryHref} className="text-link">{c.hero.secondaryCta}<ArrowDown size={18}/></a></div><p className="hero-note"><span className="note-line"/>{c.hero.note}</p></div>
         <div className="hero-visual has-video"><div className="portrait-frame"><HeroVideo/><span className="frame-corner"/><div className="portrait-caption"><span><strong>{c.brand.name}</strong><small lang="en" dir="ltr">{c.brand.english}</small></span><ArrowUpLeft size={32}/></div></div><div className="visual-note"><span className="mini-symbol" aria-hidden="true"><MoveUpRight size={25}/></span><span>{c.hero.signature}</span></div><span className="vertical-label" lang="en">A CLEARER WAY FORWARD</span></div>
