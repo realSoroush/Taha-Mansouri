@@ -41,7 +41,7 @@
 .brand { min-width: 0; }
 .brand-logo { width: 64px; height: 64px; flex: 0 0 64px; object-fit: contain; border-radius: 10px; background: white; }
 .signature-logo { width: 48px; height: 48px; object-fit: contain; border-radius: 6px; }
-.about-statement, .service-card, .service-invite, .lead-card, .courses-status {
+.about-statement, .service-card, .service-invite, .lead-card {
   background: var(--panel);
   color: var(--ink);
   border: 1px solid var(--line);
@@ -56,7 +56,7 @@
 .service-invite .text-link, .invite-symbol { color: var(--accent); }
 .service-invite p { max-width: 100%; }
 .industry-list svg { color: var(--text-muted); }
-.pill, .course-highlight .pill, .process .pill, .courses-status .pill {
+.pill, .course-highlight .pill, .process .pill {
   color: var(--accent); border-color: var(--line); background: transparent;
 }
 .process-grid article { border-color: var(--line); }

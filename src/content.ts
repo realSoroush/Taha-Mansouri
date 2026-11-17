@@ -1,13 +1,15 @@
+import { coursePath } from './course-paths';
+
 // تمام متن‌ها و مسیر عکس‌های صفحه را از این فایل ویرایش کنید.
 // عکس‌ها را داخل public/images بگذارید؛ نمونه: /images/taha.webp
 // از گیومهٔ انگلیسی داخل متن استفاده نکنید یا آن را با \" بنویسید.
 export const content = {
   brand: { name: 'طاها منصوری', role: 'مدرس و مشاور کسب‌وکار', english: 'TAHA MANSOURI' },
   navigation: [
-    { label: 'درباره طاها', href: '#about' }, { label: 'دوره‌ها', href: '/courses/' },
+    { label: 'درباره طاها', href: '#about' }, { label: 'راهنمای فروش', href: coursePath },
     { label: 'مشاوره', href: '#services' }, { label: 'تماس', href: '#contact' },
   ],
-  headerCta: { label: 'دوره‌های آموزشی', href: '/courses/' },
+  headerCta: { label: 'مشاهدهٔ راهنمای فروش', href: coursePath },
   contact: {
     phone: '+989120215359', display: '۰۹۱۲ ۰۲۱ ۵۳۵۹',
     whatsapp: 'https://wa.me/989120215359', telegram: 'https://t.me/+989120215359',
@@ -20,7 +22,7 @@ export const content = {
     eyebrow: 'طاها منصوری | آموزش و مشاوره کسب‌وکار',
     lines: ['یاد بگیر،', 'بهتر تصمیم بگیر،', 'هدفمند رشد کن.'],
     description: 'آموزش و مشاوره با طاها منصوری، برای شناخت بهتر کسب‌وکار و تصمیم‌های روشن‌تر؛ از یادگیری تا بررسی اختصاصی چالش‌های مسیر رشد.',
-    primaryCta: 'دوره‌های آموزشی', primaryHref: '/courses/',
+    primaryCta: 'مشاهدهٔ راهنمای فروش', primaryHref: coursePath,
     secondaryCta: 'آشنایی با طاها', secondaryHref: '#about',
     note: 'آموزش، مشاوره و همراهی در مسیر رشد کسب‌وکار',
     photo: '', photoAlt: 'طاها منصوری، مشاور رشد کسب‌وکار',
@@ -69,7 +71,7 @@ export const content = {
     description: 'طاها منصوری در زمینه آموزش و مشاوره کسب‌وکار فعالیت می‌کند. تمرکز این مسیر، کمک به صاحبان کسب‌وکار برای شناخت بهتر مسائل و تصمیم‌گیری آگاهانه‌تر است.',
     secondParagraph: 'برای نیازهایی که به بررسی اختصاصی و همراهی بیشتری نیاز دارند، مسیر مشاوره و همکاری اجرایی با طاها و تیم تخصصی تعریف می‌شود.',
     quote: 'رشد، با روشن‌شدن اولویت‌ها شروع می‌شود.',
-    linkLabel: 'آشنایی با دوره‌های آموزشی', linkHref: '/courses/',
+    linkLabel: 'آشنایی با راهنمای فروش', linkHref: coursePath,
     photo: '', photoAlt: 'طاها منصوری، مدرس و مشاور کسب‌وکار',
   },
   work: {
@@ -85,8 +87,8 @@ export const content = {
   education: {
     eyebrow: 'دوره‌های آموزشی', title: 'آموزش، نقطه شروع مسیر شما.',
     description: 'اولین راهنمای فروش طاها منصوری را ببینید: پاسخ به اعتراض‌های رایج مشتری، همراه با مثال و توضیح.',
-    badge: 'راهنمای PDF', cta: 'رفتن به صفحه دوره‌ها', href: '/courses/',
-    note: 'جزئیات هر دوره، پیش از شروع ثبت‌نام منتشر می‌شود.',
+    badge: 'راهنمای PDF', cta: 'مشاهدهٔ راهنما و خرید', href: coursePath,
+    note: 'سرفصل‌ها و نمونه‌ای از پاسخ‌ها در صفحهٔ راهنما در دسترس‌اند.',
   },
   coursesPage: {
     breadcrumb: 'خانه', eyebrow: 'آموزش با طاها منصوری', title: 'دوره‌های آموزشی', accent: 'طاها منصوری',
