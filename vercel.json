@@ -8,6 +8,10 @@
     {
       "source": "/courses/customer-objections/",
       "destination": "/courses/customer-objections/index.html"
+    },
+    {
+      "source": "/courses/customer-objections/return/",
+      "destination": "/courses/customer-objections/return/index.html"
     }
   ]
 }
