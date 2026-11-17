@@ -1,11 +1,20 @@
 import { useEffect, useState } from 'react';
 import { BookOpen, ArrowUpLeft, Download, FileText } from 'lucide-react';
 import course from './customer-objections.json';
+import { content as c } from './content';
 
 export const coursePath = '/courses/' + course.slug + '/';
 export const coursePrice = new Intl.NumberFormat('fa-IR').format(course.priceToman) + ' تومان';
 const api = '/api/course-purchase';
 const orderKey = 'taha-customer-objections-order';
+export const courseReturnPath = coursePath + 'return/';
+function externalCheckout() {
+  try {
+    const url = new URL(import.meta.env.VITE_COURSE_PAYMENT_LINK ?? '');
+    return url.protocol === 'https:' && !url.username && !url.password ? url.href : '';
+  } catch { return ''; }
+}
+const paymentLink = externalCheckout();
 const checkoutEnabled = import.meta.env.VITE_COURSE_CHECKOUT_ENABLED === 'true';
 const orderPattern = /^[a-f0-9-]{36}$/;
 
@@ -82,7 +91,10 @@ export function CourseProduct() {
           <p>شماره سفارش: <bdi className="order-number">{validOrder}</bdi></p>
           {state === 'pending' && <a className="text-link" href={coursePath}>بازگشت به صفحهٔ خرید</a>}
         </> : <>
-          {checkoutEnabled ? <button className="button" disabled={busy} onClick={start}>{busy ? 'در حال اتصال به درگاه…' : 'خرید و دانلود PDF'}</button> : <p>فروش آنلاین هنوز فعال نشده است.</p>}
+          {checkoutEnabled ? <button className="button" disabled={busy} onClick={start}>{busy ? 'در حال اتصال به درگاه…' : 'خرید و دانلود PDF'}</button> : paymentLink ? <>
+            <a className="button" href={paymentLink}>پرداخت {coursePrice}<ArrowUpLeft size={18}/></a>
+            <p>پرداخت در زرین‌پال انجام می‌شود. کد پیگیری را برای دریافت فایل نگه دارید.</p>
+          </> : <p>فروش آنلاین هنوز فعال نشده است.</p>}
           {state === 'start-error' && <p role="alert">اتصال به درگاه ممکن نشد. دوباره تلاش کنید.</p>}
           {previousOrder && orderPattern.test(previousOrder) && <a className="text-link" href={coursePath + '?order=' + previousOrder}>پیگیری آخرین خرید</a>}
         </>}
@@ -90,6 +102,26 @@ export function CourseProduct() {
     </div>
     <section className="product-panel"><h2>موضوعات راهنما</h2><ul className="product-topics">{course.topics.map(topic => <li key={topic}>{topic}</li>)}</ul></section>
     <section className="product-panel"><h2>نمونهٔ واقعی از راهنما</h2><p><strong>{course.sample.question}</strong></p><blockquote>{course.sample.answer}</blockquote><p>{course.sample.explanation} <small>— صفحهٔ ۶</small></p></section>
-    <section className="product-panel"><h2>پرسش‌های متداول</h2>{course.faq.map(([question, answer]) => <details key={question}><summary>{question}</summary><p>{answer}</p></details>)}</section>
+    <section className="product-panel"><h2>پرسش‌های متداول</h2>{course.faq.map(([question, answer], index) => <details key={question}><summary>{question}</summary><p>{index === 1 && !checkoutEnabled && paymentLink ? 'کد پیگیری زرین‌پال را نگه دارید. برای دریافت فایل پس از بررسی پرداخت، از بخش تماس پیگیری کنید.' : answer}</p></details>)}</section>
+  </main>;
+}
+
+
+export function CourseReturn() {
+  return <main id="main" className="container section course-return">
+    <article className="product-panel course-return-card">
+      <div className="course-return-icon"><FileText size={28} aria-hidden="true"/></div>
+      <p className="eyebrow">راهنمای فروش · {course.author}</p>
+      <h1>{course.title}</h1>
+      <p className="course-return-meta">نسخهٔ PDF · {new Intl.NumberFormat('fa-IR').format(course.pages)} صفحه</p>
+      <div className="course-return-notice">
+        <h2>پیگیری خرید</h2>
+        <p>اگر در زرین‌پال رسید موفق دریافت کردید، کد پیگیری را نگه دارید و برای دریافت فایل با ما تماس بگیرید. اگر پرداخت ناموفق بود، به صفحهٔ محصول برگردید.</p>
+      </div>
+      <div className="course-return-actions">
+        <a className="button" href={c.contact.whatsapp}>پیگیری دریافت فایل <ArrowUpLeft size={18}/></a>
+        <a className="text-link" href={coursePath}>بازگشت به صفحهٔ محصول</a>
+      </div>
+    </article>
   </main>;
 }

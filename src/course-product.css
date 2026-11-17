@@ -11,3 +11,13 @@
 .product-panel summary { cursor: pointer; }
 .order-number { overflow-wrap: anywhere; }
 @media (max-width: 760px) { .product-hero { grid-template-columns: minmax(0, 1fr); } }
+
+.course-return { max-width: 760px; margin-inline: auto; }
+.course-return-card { padding: clamp(22px, 6vw, 56px); }
+.course-return-card h1 { font-size: clamp(24px, 5vw, 42px); line-height: 1.55; margin: 0; }
+.course-return-icon { display: grid; place-items: center; width: 58px; height: 58px; background: var(--action-bg); color: var(--navy); border-radius: 14px; margin-bottom: 24px; }
+.course-return-meta { opacity: .8; margin: 12px 0 24px; }
+.course-return-notice { border-top: 1px solid var(--line); padding-top: 20px; }
+.course-return-notice h2 { font-size: 20px; margin: 0 0 8px; }
+.course-return-notice p { line-height: 1.9; }
+.course-return-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-top: 16px; }
