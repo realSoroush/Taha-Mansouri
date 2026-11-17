@@ -11,7 +11,7 @@ const resultUrl = (id, result) => '/courses/' + product.slug + '/?order=' + id +
 
 async function request(url, init) {
   const response = await fetch(url, { ...init, redirect: 'error', signal: AbortSignal.timeout(8000) });
-  if (!response.ok) throw new Error('UPSTREAM');
+  if (!response.ok) throw Object.assign(new Error('UPSTREAM'), { status: response.status });
   return response.json();
 }
 
@@ -32,10 +32,15 @@ export default async function handler(req, res) {
   if (temporaryDownload && (req.method !== 'GET' || process.env.COURSE_EXTERNAL_DOWNLOAD_ENABLED !== 'true')) {
     return send(404, { error: 'unavailable' });
   }
+  const downloadUnavailable = (reason, status) => {
+    console.warn('[course-download]', { reason, status });
+    return redirect('/courses/' + product.slug + '/return/?download=unavailable');
+  };
+  if (temporaryDownload && (!db || !key)) return downloadUnavailable('missing-storage-config');
   if (!db || !key || (!temporaryDownload && (!merchant || !rawOrigin))) return send(503, { error: 'unavailable' });
   try {
     const tables = db + '/rest/v1/course_orders';
-    const common = { apikey: key, Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' };
+    const common = { apikey: key, ...(key.startsWith('sb_secret_') ? {} : { Authorization: 'Bearer ' + key }), 'Content-Type': 'application/json' };
     const dbCall = (url, method, body) => request(url, {
       method, headers: { ...common, Prefer: 'return=representation' },
       body: body ? JSON.stringify(body) : undefined,
@@ -115,7 +120,8 @@ export default async function handler(req, res) {
       return redirect(await signDownload());
     }
     return send(200, { paid: Boolean(order.paid_at) });
-  } catch {
+  } catch (error) {
+    if (temporaryDownload) return downloadUnavailable(error.message === 'SIGNING' ? 'invalid-signing-response' : 'storage-request', error.status);
     if (req.method === 'GET' && action === 'callback' && uuid.test(id)) return redirect(resultUrl(id, 'pending'));
     return send(503, { error: 'unavailable' });
   }
