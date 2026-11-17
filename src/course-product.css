@@ -42,3 +42,5 @@
   .course-return-actions { align-items: stretch; flex-direction: column; }
   .course-return-actions .button { width: 100%; justify-content: center; }
 }
+
+img.product-author-mark { width: 64px; height: 64px; object-fit: cover; }

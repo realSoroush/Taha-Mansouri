@@ -87,7 +87,7 @@ export function CourseProduct() {
         <ul className="product-badges" aria-label="مشخصات راهنما"><li>{pageCount} صفحه</li><li>۸ موضوع فروش</li><li>فایل PDF</li></ul>
       </div>
       <aside id="purchase" className="product-panel" aria-label="خرید راهنما">
-        <div className="product-author"><span className="product-author-mark" aria-hidden="true"><BookOpen size={24}/></span><div><strong>{course.author}</strong><p>نویسندهٔ راهنما</p></div></div>
+        <div className="product-author"><img className="product-author-mark" src="/images/taha-course-author.webp" alt="" width="64" height="64"/><div><strong>{course.author}</strong><p>نویسندهٔ راهنما</p></div></div>
         <h2>{course.title}</h2>
         <p>فایل PDF · {new Intl.NumberFormat('fa-IR').format(course.pages)} صفحه</p>
         <strong>{coursePrice}</strong>
@@ -132,6 +132,7 @@ export function CourseReturn() {
           : <p role="status">دانلود از این صفحه هنوز فعال نشده است.</p>}
         <a className="text-link" href={coursePath}>صفحهٔ محصول</a>
       </div>
+      {new URLSearchParams(location.search).get('download') === 'unavailable' && <p role="alert">دانلود موقتاً در دسترس نیست. کمی بعد دوباره تلاش کن.</p>}
       <div className="course-return-tip"><BookOpen size={20} aria-hidden="true"/><p><strong>یک شروع سریع</strong><br/>اگه زیاد می‌شنوی «گرونه»، از صفحهٔ ۶ شروع کن.</p></div>
     </article>
   </main>;
