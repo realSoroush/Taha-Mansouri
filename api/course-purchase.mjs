@@ -28,10 +28,12 @@ export default async function handler(req, res) {
   const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
   const merchant = process.env.ZARINPAL_MERCHANT_ID?.trim();
   const enabled = process.env.COURSE_CHECKOUT_ENABLED === 'true';
-  if (!db || !key || !merchant || !rawOrigin) return send(503, { error: 'unavailable' });
+  const temporaryDownload = action === 'external-download';
+  if (temporaryDownload && (req.method !== 'GET' || process.env.COURSE_EXTERNAL_DOWNLOAD_ENABLED !== 'true')) {
+    return send(404, { error: 'unavailable' });
+  }
+  if (!db || !key || (!temporaryDownload && (!merchant || !rawOrigin))) return send(503, { error: 'unavailable' });
   try {
-    const origin = new URL(rawOrigin);
-    if (origin.protocol !== 'https:' || origin.username || origin.password) throw new Error('CONFIG');
     const tables = db + '/rest/v1/course_orders';
     const common = { apikey: key, Authorization: 'Bearer ' + key, 'Content-Type': 'application/json' };
     const dbCall = (url, method, body) => request(url, {
@@ -49,6 +51,12 @@ export default async function handler(req, res) {
       if (typeof path.signedURL !== 'string' || !path.signedURL.startsWith('/object/sign/' + object + '?')) throw new Error('SIGNING');
       return db + '/storage/v1' + path.signedURL + '&download=customer-objections.pdf';
     }
+
+    // Explicitly public in temporary hosted-link mode; never accepts a path from the browser.
+    if (temporaryDownload) return redirect(await signDownload());
+
+    const origin = new URL(rawOrigin);
+    if (origin.protocol !== 'https:' || origin.username || origin.password) throw new Error('CONFIG');
 
     if (action === 'start' && req.method === 'POST') {
       if (req.headers.origin !== origin.origin) return send(403, { error: 'origin' });
