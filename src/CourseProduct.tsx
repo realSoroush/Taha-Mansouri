@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
-import { BookOpen, ArrowUpLeft, Download, Check, Sparkles, ChevronDown, FileText, Layers3, MessageSquareQuote } from 'lucide-react';
+import { BookOpen, ArrowUpLeft, Download, Check, Sparkles, MessageCircle, ChevronDown, FileText, Layers3, MessageSquareQuote } from 'lucide-react';
 import course from './customer-objections.json';
 import { coursePath } from './course-paths';
+import { content } from './content';
 
 export const coursePrice = new Intl.NumberFormat('fa-IR').format(course.priceToman) + ' تومان';
 const api = '/api/course-purchase';
@@ -192,6 +193,7 @@ export function CourseReturn() {
         {externalDownloadEnabled
           ? <a className="button" href={api + '?action=external-download'}><Download size={20} aria-hidden="true"/> دانلود فایل PDF</a>
           : <p role="status">دانلود از این صفحه هنوز فعال نشده است.</p>}
+        <a className="button" href={content.contact.whatsapp} target="_blank" rel="noopener noreferrer"><MessageCircle size={20} aria-hidden="true"/> پشتیبانی در واتساپ</a>
         <a className="text-link" href={coursePath}>صفحهٔ محصول</a>
       </div>
       {new URLSearchParams(location.search).get('download') === 'unavailable' && <p role="alert">دانلود موقتاً در دسترس نیست. کمی بعد دوباره تلاش کن.</p>}
