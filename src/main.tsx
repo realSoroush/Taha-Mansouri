@@ -12,6 +12,8 @@ import { coursePath } from './course-paths';
 import './course-product.css';
 import './course-pages.css';
 import './theme.css';
+import './course-promo.css';
+import course from './customer-objections.json';
 
 const icons = { compass: Compass, growth: TrendingUp, team: Users, brand: Fingerprint, finance: ChartNoAxesCombined };
 function App() {
@@ -36,7 +38,26 @@ function App() {
       </section>
       <section className="principles container" aria-label="مسیرهای همراهی با طاها">{c.principles.map(p => <div className="principle" key={p.number}><span className="index">{p.number}</span><div><h2>{p.title}</h2><p>{p.text}</p></div></div>)}</section>
       <section id="about" className="about section surface-light"><div className="container about-layout"><div className="about-statement">{c.about.photo ? <img src={c.about.photo} alt={c.about.photoAlt} loading="lazy"/> : <><span className="quote-mark" aria-hidden="true">“</span><p>{c.about.quote}</p><span className="statement-signature">{c.brand.name}<img className="signature-logo" src="/images/taha-brand.webp" alt="" width="48" height="48" loading="lazy"/></span></>}</div><div className="about-copy"><p className="eyebrow">{c.about.eyebrow}</p><h2>{c.about.title}<br/><span className="accent">{c.about.accent}</span></h2><p>{c.about.description}</p><p>{c.about.secondParagraph}</p><a href={c.about.linkHref} className="text-link">{c.about.linkLabel}<ArrowUpLeft size={20}/></a></div></div></section>
-      <section id="education" className="education course-highlight section surface-navy"><div className="container education-inner"><div><p className="eyebrow">{c.education.eyebrow}</p><h2>{c.education.title}</h2><p>{c.education.description}</p><div className="education-actions"><a className="button" href={c.education.href}>{c.education.cta}<ArrowUpLeft size={20}/></a><span className="pill">{c.education.badge}</span></div><small>{c.education.note}</small></div></div></section>
+      <section id="education" className="course-promo" aria-labelledby="promo-title">
+        <div className="container promo-layout">
+          <div className="promo-copy">
+            <p className="promo-eyebrow"><span aria-hidden="true"/> راهنمای عملی فروش · طاها منصوری</p>
+            <h2 id="promo-title">مشتری می‌گه «گرونه».<br/><span>گفت‌وگو رو چطور ادامه بدی؟</span></h2>
+            <p className="promo-description">قبل از اینکه تخفیف بدی، دلیل تردیدش رو پیدا کن. این راهنما برای ۵۴ اعتراض رایج مشتری، نمونهٔ پاسخ و توضیح داره؛ از قیمت و اعتماد تا «بذار فکر کنم».</p>
+            <ul className="promo-facts"><li>۵۴ اعتراض مشتری</li><li>{new Intl.NumberFormat('fa-IR').format(course.pages)} صفحه PDF</li><li>۸ موضوع کاربردی</li></ul>
+            <div className="promo-actions"><a className="button" href={coursePath}>مشاهدهٔ راهنما و خرید <ArrowUpLeft size={20} aria-hidden="true"/></a><span>نمونهٔ پاسخ‌ها رو قبل از خرید بخون.</span></div>
+          </div>
+          <a className="promo-visual" href={coursePath} aria-label="مشاهدهٔ راهنمای پاسخ به اعتراض‌های مشتری">
+            <div className="promo-book">
+              <div className="promo-book-top"><span>راهنمای فروش</span><span dir="ltr">PDF</span></div>
+              <div className="promo-book-number">۵۴</div>
+              <h3>اعتراض مشتری،<br/>یک فرصت برای گفت‌وگو.</h3>
+              <div className="promo-book-author"><img src="/images/taha-course-author.webp" alt="" width="52" height="52"/><span>طاها منصوری<small>راهنمای کاربردی پاسخ به اعتراض‌های مشتری</small></span></div>
+            </div>
+            <div className="promo-example"><span aria-hidden="true">«</span><p>«بذار بیشتر فکر کنم…»<small>پشت این جمله، چه تردیدی هست؟</small></p><ArrowUpLeft size={22} aria-hidden="true"/></div>
+          </a>
+        </div>
+      </section>
       <section className="audience section surface-light"><div className="container audience-layout"><div><p className="eyebrow">{c.audience.eyebrow}</p><h2>{c.audience.title}</h2><p className="section-intro">{c.audience.description}</p></div><div className="industry-list">{c.audience.items.map((item, i) => <div key={item}><span className="industry-number">۰{['۱','۲','۳','۴','۵','۶'][i] || i+1}</span><span>{item}</span><Plus size={16} aria-hidden="true"/></div>)}</div></div></section>
       <section id="services" className="section surface-navy"><div className="container"><div className="section-heading"><div><p className="eyebrow">{c.services.eyebrow}</p><h2>{c.services.title}<br/><span className="muted-title">{c.services.accent}</span></h2></div><p className="section-intro">{c.services.description}</p></div><div className="services-grid">{c.services.items.map((s, i) => { const Icon = icons[s.icon as keyof typeof icons] || Compass; return <article className={`service-card service-${i}`} key={s.title}><div className="service-top"><Icon size={28} strokeWidth={1.5}/><span dir="ltr">0{i+1}</span></div><h3>{s.title}</h3><p>{s.text}</p></article>; })}<div className="service-invite"><span className="invite-symbol" aria-hidden="true"><ArrowUpLeft size={48} strokeWidth={1}/></span><p>{c.services.footer}</p><a href="#contact" className="text-link">{c.contact.cta}<ArrowLeft size={18}/></a></div></div></div></section>
       <section id="process" className="process section surface-light"><div className="container"><div className="section-heading"><div><p className="eyebrow">{c.process.eyebrow}</p><h2>{c.process.title}</h2></div><span className="pill">{c.process.badge}</span></div><p className="process-description">{c.process.description}</p><div className="process-grid">{c.process.items.map((item,i) => <article key={item.title}><div className="step-number">{['۰۱','۰۲','۰۳'][i]}</div><h3>{item.title}</h3><p>{item.text}</p></article>)}</div></div></section>

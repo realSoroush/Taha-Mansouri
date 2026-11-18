@@ -1,0 +1,31 @@
+.course-promo{position:relative;isolation:isolate;overflow:hidden;background:#101f3c;color:#f5f7fa;padding:88px 0}
+.course-promo:before{content:"";position:absolute;z-index:-1;width:650px;height:650px;left:-170px;top:-180px;background:radial-gradient(circle,#3866a64d,transparent 67%);pointer-events:none}
+.promo-layout{display:grid;grid-template-columns:1.2fr 1fr;gap:90px;align-items:center}
+.promo-eyebrow{display:flex;align-items:center;gap:10px;color:#c9dfff;font-size:13px;font-weight:600;margin-bottom:22px}
+.promo-eyebrow>span{width:8px;height:8px;background:#c9dfff;border-radius:50%;box-shadow:0 0 0 5px #c9dfff14}
+.promo-copy h2{font-size:clamp(28px,3.2vw,43px);line-height:1.6;font-weight:750;letter-spacing:-.6px}
+.promo-copy h2>span{color:#c9dfff}
+.promo-description{color:#c0ccde;font-size:16px;line-height:2.1;margin-top:19px;max-width:54ch}
+.promo-facts{display:flex;flex-wrap:wrap;gap:8px 20px;padding:0;list-style:none;color:#d9e6f8;font-size:13px;margin:24px 0}
+.promo-facts li{display:flex;align-items:center;gap:8px}
+.promo-facts li:before{content:"";width:4px;height:4px;background:#8cb8f2;border-radius:50%}
+.promo-actions{display:flex;flex-wrap:wrap;align-items:center;gap:14px 20px}
+.promo-actions .button{min-height:56px;box-shadow:0 6px 24px #0003}
+.promo-actions>span{font-size:12px;color:#c0ccde}
+.promo-visual{position:relative;display:block;max-width:375px;width:100%;margin-inline:auto;padding:0 8px 34px}
+.promo-book{position:relative;background:linear-gradient(150deg,#294b78,#172c4d 75%);border:1px solid #7896bf66;border-inline-start:8px solid #41638e;border-radius:10px 16px 16px 10px;padding:26px 28px 24px;box-shadow:-10px 12px 0 -5px #d0dced,-15px 18px 0 -7px #6f86a6,0 28px 60px #0004;transform:rotate(-3deg);transition:transform .25s}
+.promo-visual:hover .promo-book{transform:rotate(0)}
+.promo-book-top{display:flex;justify-content:space-between;color:#c9dfff;font-size:12px;padding-bottom:16px;border-bottom:1px solid #c9dfff33}
+.promo-book-top [dir=ltr]{letter-spacing:2px}
+.promo-book-number{font-size:104px;font-weight:800;line-height:1.25;color:#c9dfff;margin-top:12px}
+.promo-book h3{font-size:24px;line-height:1.7;font-weight:650;margin-bottom:26px}
+.promo-book-author{display:flex;gap:10px;align-items:center;padding-top:17px;border-top:1px solid #c9dfff33;font-size:14px}
+.promo-book-author img{border-radius:50%;object-fit:cover;flex:none}
+.promo-book-author small{display:block;color:#c0ccde;font-size:10px;line-height:1.9;margin-top:3px}
+.promo-example{position:absolute;bottom:0;inset-inline-start:-20px;display:flex;align-items:center;gap:14px;max-width:100%;background:#eff5ff;color:#142540;padding:15px 18px;border:1px solid #d5e2f6;border-radius:12px;box-shadow:0 12px 32px #0003}
+.promo-example>span{font-size:40px;color:#4b72a5;line-height:1}
+.promo-example p{font-size:15px;font-weight:700}
+.promo-example small{display:block;font-size:11px;font-weight:400;margin-top:3px;color:#526178}
+@media(max-width:1000px){.promo-layout{gap:40px}.promo-example{inset-inline-start:0}}
+@media(max-width:760px){.course-promo{padding:54px 0}.promo-layout{grid-template-columns:minmax(0,1fr);gap:38px}.promo-description{font-size:15px}.promo-copy h2{font-size:clamp(26px,6.8vw,36px)}.promo-visual{max-width:320px}.promo-book{padding:20px 24px}.promo-book-number{font-size:86px}.promo-book h3{font-size:22px}.promo-actions{align-items:stretch;flex-direction:column;gap:12px}.promo-actions .button{width:100%;white-space:normal}.promo-actions>span{text-align:center}.promo-eyebrow{line-height:1.9}.promo-facts{gap:9px 16px;font-size:12px}.promo-example{inset-inline:0;width:fit-content;margin-inline:auto}}
+@media(prefers-reduced-motion:reduce){.promo-book{transition:none}}
